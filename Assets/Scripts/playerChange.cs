@@ -7,13 +7,16 @@ public class playerChange : MonoBehaviour {
 	public GameObject player1;
 	public GameObject model;
 	public float seconds;
+	public float cooldown = 10;
 	public Text text;
+	public Slider slider;
 	public bool canTransform = true;
 
 
 	void Start () {
 		player1 = player1;
 		model = model;
+		slider = slider;
 	}
 
 	void Update () {
@@ -25,9 +28,10 @@ public class playerChange : MonoBehaviour {
 			canTransform = false; 
 		}
 	}
+
 	void Countdown(){
 		print (seconds);
-		seconds--; //Time.deltaTime;
+		seconds--;
 		text.text = "Time Left:" + Mathf.Round (seconds);
 	
 		if (seconds <= 0) {
@@ -37,8 +41,19 @@ public class playerChange : MonoBehaviour {
 			seconds = 5;
 		}
 	}
+
 	void transformPlayer(){
 		canTransform = true;
+	}
+
+	void coolDown(){
+		if (canTransform == false) {
+			cooldown--;
+			slider.value = cooldown;
+		} else {
+			slider.value = 10f;		
+		}
+	
 	}
 }
 
