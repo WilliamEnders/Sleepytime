@@ -29,6 +29,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
+		Vector3 locVel;
 
 		void Start()
 		{
@@ -45,6 +46,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
+			locVel = transform.InverseTransformDirection(m_Rigidbody.velocity);
+
 
 			// convert the world relative moveInput vector into a local-relative
 			// turn amount and forward amount required to head in the desired
@@ -61,16 +64,21 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (m_IsGrounded)
 			{
 				HandleGroundedMovement(crouch, jump);
+				print (m_Rigidbody.velocity);
 			}
 			else
 			{
-				HandleAirborneMovement();
+				HandleAirborneMovement(move);
+				locVel = transform.TransformDirection(new Vector3(move.x * 4,m_Rigidbody.velocity.y,move.z * 4));
+
+				m_Rigidbody.velocity = locVel;
 			}
 			ScaleCapsuleForCrouching(crouch);
 			PreventStandingInLowHeadroom();
 
 			// send input and other state parameters to the animator
 			UpdateAnimator(move);
+
 		}
 
 
@@ -151,13 +159,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		void HandleAirborneMovement()
+		void HandleAirborneMovement(Vector3 movey)
 		{
 			// apply extra gravity from multiplier:
 			Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
 			m_Rigidbody.AddForce(extraGravityForce);
 
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
+			UpdateAnimator(movey);
 		}
 
 
@@ -180,7 +189,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
 			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 		}
-
+			
 
 		public void OnAnimatorMove()
 		{
