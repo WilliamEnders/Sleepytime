@@ -14,9 +14,6 @@ public class playerChange : MonoBehaviour {
 
 
 	void Start () {
-		player1 = player1;
-		model = model;
-		slider = slider;
 	}
 
 	void Update () {
