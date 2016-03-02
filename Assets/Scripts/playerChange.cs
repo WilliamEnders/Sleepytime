@@ -7,13 +7,15 @@ public class playerChange : MonoBehaviour {
 	public GameObject player1;
 	public GameObject model;
 	public float seconds;
-	public float cooldown = 10;
+	public float cooldown;
 	public Text text;
-	public Slider slider;
+	public Text text2;
 	public bool canTransform = true;
 
 
 	void Start () {
+		player1 = player1;
+		model = model;
 	}
 
 	void Update () {
@@ -23,19 +25,24 @@ public class playerChange : MonoBehaviour {
 			InvokeRepeating ("Countdown", 1.0f, 1);
 			Invoke ("transformPlayer", 10);
 			canTransform = false; 
+			coolDown ();
+		}
+		if (canTransform == false) {
+			InvokeRepeating ("coolDown", 5f, 1f);
+		
 		}
 	}
 
 	void Countdown(){
-		print (seconds);
-		seconds--;
+		//print (seconds);
+		seconds --;
 		text.text = "Time Left:" + Mathf.Round (seconds);
 	
-		if (seconds <= 0) {
+		if (seconds <= 0f) {
 			CancelInvoke ("Countdown");
 			player1.SetActive (true);
 			model.SetActive (false);
-			seconds = 5;
+			seconds = 5f;
 		}
 	}
 
@@ -44,13 +51,16 @@ public class playerChange : MonoBehaviour {
 	}
 
 	void coolDown(){
-		if (canTransform == false) {
-			cooldown--;
-			slider.value = cooldown;
-		} else {
-			slider.value = 10f;		
+		cooldown--;
+		text2.text = "Change Time:" + Mathf.Round (cooldown);
+		print (cooldown);
+
+		if (cooldown <= 0f) {
+			CancelInvoke ("coolDown");
+			cooldown = 10f;
 		}
 	
 	}
+		
 }
 
