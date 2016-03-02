@@ -14,11 +14,8 @@ public class playerChange : MonoBehaviour {
 
 
 	void Start () {
-<<<<<<< HEAD
 		player1 = player1;
 		model = model;
-=======
->>>>>>> d101354120815412b5773bad9952b0967c6c816e
 	}
 
 	void Update () {
@@ -64,5 +61,6 @@ public class playerChange : MonoBehaviour {
 		}
 	
 	}
+		
 }
 
