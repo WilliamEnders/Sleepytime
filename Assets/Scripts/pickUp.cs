@@ -8,6 +8,7 @@ public class pickUp : MonoBehaviour {
 	public Text text;
 	public GameObject greenLightLOL;
 
+
 	void Start(){
 		inventory = 0;
 	}

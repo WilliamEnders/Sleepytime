@@ -13,7 +13,6 @@ public class testPickup : MonoBehaviour {
 
 	void Update (){
 		if(Input.GetKeyDown(KeyCode.Space)){
-			
 			temp = cube;
 			if (temp.transform.parent == null) {
 				temp.transform.parent = transform;
