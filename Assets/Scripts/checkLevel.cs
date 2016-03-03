@@ -3,7 +3,6 @@ using System.Collections;
 
 public class checkLevel : MonoBehaviour {
 
-	public Light spotLight;
 	public testPickUp script;
 
 	void Start () {
@@ -14,10 +13,11 @@ public class checkLevel : MonoBehaviour {
 	void Update () {
 	
 	}
-	void OnTriggerEnter(Collider other){
-		if ((script.temp.transform.parent == null) && (script.inventory == 1)) {
-			spotLight.color = Color.green;
-			Destroy (other); //placeholder until we get other scenes
-		}	
+	void OnTriggerStay(Collider other){
+		if (other.tag == "Toy") {
+			if ((script.inventory == 1)) {
+				Destroy (script.temp); //placeholder until we get other scenes
+			}
+		}
 	}
 }
