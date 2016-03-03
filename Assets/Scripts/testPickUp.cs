@@ -10,15 +10,20 @@ public class testPickUp : MonoBehaviour {
 
 
 	void Start () {
+<<<<<<< HEAD
+		player = player;
+		temp = null;
+=======
+>>>>>>> abf4d03772733046ee8d88522cd6acc699afadc9
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.E)) {
+		if (Input.GetKeyDown (KeyCode.E) && temp != null) {
 			if (temp.transform.parent == null) {
-				temp.transform.parent = player.transform;
+				temp.transform.parent = transform;
 				inventory++;
-			} else if (temp.transform.parent == player.transform) {
+			} else if (temp.transform.parent == transform) {
 				temp.transform.parent = null;
 			}
 		}
@@ -29,6 +34,7 @@ public class testPickUp : MonoBehaviour {
 		if (other.gameObject.tag == "Toy") {
 			if (Input.GetKeyDown (KeyCode.E)) {
 				temp = other.gameObject;
+				print ("wow");
 			}
 		}	
 	}
