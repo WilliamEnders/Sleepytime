@@ -64,7 +64,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (m_IsGrounded)
 			{
 				HandleGroundedMovement(crouch, jump);
-				print (m_Rigidbody.velocity);
+//				print (m_Rigidbody.velocity);
 			}
 			else
 			{
