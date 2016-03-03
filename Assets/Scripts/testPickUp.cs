@@ -10,7 +10,6 @@ public class testPickUp : MonoBehaviour {
 
 
 	void Start () {
-		player = player;
 	}
 	
 	// Update is called once per frame
