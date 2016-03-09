@@ -3,7 +3,6 @@ using System.Collections;
 
 public class coneCast : MonoBehaviour {
 
-	public float rayDistance = 100;
 	public Transform playerSpot;
 
 	// Use this for initialization
@@ -26,20 +25,14 @@ public class coneCast : MonoBehaviour {
 	}
 
 
-	void OnDrawGizmos() {
-		Gizmos.color = Color.red;
-		if (GameObject.Find ("cone").GetComponent<coneDetection> ().onSpot == true) {
-			Gizmos.DrawRay (transform.position, transform.forward * rayDistance);
-		}
-	}
-
-
 	void castRay() {
 		RaycastHit hitInfo;
 		if (Physics.Raycast (transform.position, transform.forward, out hitInfo)) {
 			if (hitInfo.collider.CompareTag ("Player")) {
 				//Debug.Log ("HIT:" + hitInfo.collider.name);
-				print ("i see you");
+				if (GameObject.Find ("cone").GetComponent<coneDetection> ().onSpot == true) {
+					print ("i see you");
+				}
 			}
 		}
 	}
