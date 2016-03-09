@@ -30,13 +30,13 @@ public class coneDetection : MonoBehaviour {
 
 	void OnTriggerStay (Collider other){
 		//print (other);
-		if (other.CompareTag ("Finish")) {
+		if (other.CompareTag ("Player")) {
 			onSpot = true;
 		} 
 	}
 
 	void OnTriggerExit (Collider other) {
-		if (other.CompareTag ("Finish")) {
+		if (other.CompareTag ("Player")) {
 			onSpot = false;
 		}
 	}
