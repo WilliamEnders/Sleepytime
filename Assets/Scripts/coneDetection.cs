@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class coneDetection : MonoBehaviour {
 
 	public bool onSpot;
-	public int energy = 100;
+	public float energy = 100;
+
+	public GameObject sliderX;
+
+	Slider volumeSlider;
 
 	// Use this for initialization
 	void Start () {
+
+	volumeSlider = sliderX.GetComponent<Slider>();
 
 	
 	}
@@ -15,18 +22,20 @@ public class coneDetection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		volumeSlider.value = energy;
+
 		if (energy < 0) {
 			Invoke ("lightWarm", 1.5f);
 		}
 			
 
-		if (energy < 100 && energy >= 0) {
-			energy += 1;
+		if (energy < 100 && energy >=2 ) {
+			energy += 0.4f;
 		}
 
 
 		if (Input.GetKey(KeyCode.Mouse0) && energy > 0) {
-			energy -= 6;
+			energy -= 2;
 			GetComponent<MeshCollider> ().enabled = true;
 			//TAKE THIS OFF LATER
 			GameObject.Find ("LIGHT").GetComponent<Light> ().enabled = true;
@@ -54,7 +63,7 @@ public class coneDetection : MonoBehaviour {
 	}
 
 		void lightWarm () {
-			energy = 1;
+			energy = 2;
 		}
 		
 }
