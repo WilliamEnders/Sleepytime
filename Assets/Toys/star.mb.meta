@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: 72729f64070c64b9f970f9cce8157cad
+guid: 1ff3b2b96de8341d383da409985723f5
+timeCreated: 1457649832
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -7,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube10
+    4300000: pCube3
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -33,7 +35,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
