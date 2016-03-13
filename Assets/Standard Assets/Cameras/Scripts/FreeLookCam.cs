@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using Rewired;
 
 namespace UnityStandardAssets.Cameras
 {
+
+	[RequireComponent(typeof(CharacterController))]
     public class FreeLookCam : PivotBasedCameraRig
     {
         // This script is designed to be placed on the root object of a camera rig,
@@ -12,6 +15,9 @@ namespace UnityStandardAssets.Cameras
         // 	Camera Rig
         // 		Pivot
         // 			Camera
+
+		public int playerId = 0; // The Rewired player id of this character
+		private Player player; // The Rewired Player
 
         [SerializeField] private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)] [SerializeField] private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
@@ -31,6 +37,10 @@ namespace UnityStandardAssets.Cameras
         protected override void Awake()
         {
             base.Awake();
+
+			player = ReInput.players.GetPlayer(playerId);
+
+
             // Lock or unlock the cursor.
             Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !m_LockCursor;
@@ -75,8 +85,8 @@ namespace UnityStandardAssets.Cameras
             // Read the user input
            // var x = CrossPlatformInputManager.GetAxis("Mouse X");
             //var y = CrossPlatformInputManager.GetAxis("Mouse Y");
-			var x = Input.GetAxis("RightStickX");
-			var y = Input.GetAxis("RightStickY");
+			var x = player.GetAxis("MoveHorizontalR"); 
+			var y = player.GetAxis("MoveVerticalR"); 
 
             // Adjust the look angle by an amount proportional to the turn speed and horizontal input.
             m_LookAngle += x*m_TurnSpeed;
