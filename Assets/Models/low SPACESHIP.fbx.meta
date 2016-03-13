@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: 6b20ed7b95b9a47999d1cc39c9ab4c8a
-timeCreated: 1457385777
+guid: 910420fd6402044748cb0d00518a5f24
+timeCreated: 1457895710
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pCube5
-    100004: pCube6
-    100006: pCube7
-    100008: transform1
-    100010: transform2
-    100012: pCube8
+    100002: polySurface1
+    100004: transform1
     400000: //RootNode
-    400002: pCube5
-    400004: pCube6
-    400006: pCube7
-    400008: transform1
-    400010: transform2
-    400012: pCube8
-    2300000: //RootNode
-    2300002: pCube7
-    2300004: pCube8
-    3300000: //RootNode
-    3300002: pCube7
-    3300004: pCube8
-    4300000: pCube3
-    4300002: pCube5
-    4300004: pCube7
-    4300006: pCube8
+    400002: polySurface1
+    400004: transform1
+    2300000: polySurface1
+    3300000: polySurface1
+    4300000: polySurface1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -54,7 +39,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

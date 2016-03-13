@@ -6,6 +6,7 @@ public class coneDetection : MonoBehaviour {
 
 	public bool onSpot;
 	public float energy = 100;
+	public bool full;
 
 	public GameObject sliderX;
 
@@ -14,7 +15,8 @@ public class coneDetection : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-	volumeSlider = sliderX.GetComponent<Slider>();
+		full = true;
+		volumeSlider = sliderX.GetComponent<Slider>();
 
 	
 	}
@@ -24,12 +26,13 @@ public class coneDetection : MonoBehaviour {
 
 		volumeSlider.value = energy;
 
-		if (energy < 0) {
-			Invoke ("lightWarm", 1.5f);
+		if (energy <= 0) {
+			Invoke ("lightWarm", 2);
+			full = false;
 		}
 			
 
-		if (energy < 100 && energy >=2 ) {
+		if (energy < 100 && full == true) {
 			energy += 0.4f;
 		}
 
@@ -63,7 +66,10 @@ public class coneDetection : MonoBehaviour {
 	}
 
 		void lightWarm () {
-			energy = 2;
+		full = true;	
+		if (energy < 100 && full == true) {
+			energy += 0.4f;
+		}
 		}
 		
 }
