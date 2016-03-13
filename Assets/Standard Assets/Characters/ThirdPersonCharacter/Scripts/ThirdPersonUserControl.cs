@@ -1,12 +1,20 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using Rewired;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
+
+	[RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
+		
+		public int playerId = 0; // The Rewired player id of this character
+		private Player player; // The Rewired Player
+
+
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
@@ -16,6 +24,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         
         private void Start()
         {
+
+			player = ReInput.players.GetPlayer(playerId);
+
+
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -37,7 +49,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+				m_Jump = player.GetButton("Jump"); 
             }
         }
 
@@ -46,8 +58,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
+
+			float h = player.GetAxis("MoveHorizontalL"); 
+			float v = player.GetAxis("MoveVerticalL"); 
             bool crouch = Input.GetKey(KeyCode.C);
 
             // calculate move direction to pass to character
