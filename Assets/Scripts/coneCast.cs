@@ -4,7 +4,7 @@ using System.Collections;
 public class coneCast : MonoBehaviour {
 
 	public Transform playerSpot;
-	private Vector3 respawn;
+	public Vector3 respawn;
 	private int score;
 
 
@@ -12,13 +12,12 @@ public class coneCast : MonoBehaviour {
 	void Start () {
 
 		score = 0;
-		respawn = transform.position;
+		respawn = transform.parent.transform.position;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (score == 3) {
 			print ("VR WINS");
 		}
@@ -44,7 +43,7 @@ public class coneCast : MonoBehaviour {
 				if (GameObject.Find ("cone").GetComponent<coneDetection> ().onSpot == true) {
 					print ("i see you");
 					score = +1;
-					hitInfo.transform.position = respawn;
+					transform.parent.transform.position = respawn;
 				}
 			}
 		}
