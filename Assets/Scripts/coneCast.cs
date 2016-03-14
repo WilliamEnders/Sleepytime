@@ -4,7 +4,7 @@ using System.Collections;
 public class coneCast : MonoBehaviour {
 
 	public Transform playerSpot;
-	public Transform respawn;
+	private Vector3 respawn;
 	private int score;
 
 
@@ -12,6 +12,7 @@ public class coneCast : MonoBehaviour {
 	void Start () {
 
 		score = 0;
+		respawn = transform.position;
 	
 	}
 	
@@ -43,7 +44,7 @@ public class coneCast : MonoBehaviour {
 				if (GameObject.Find ("cone").GetComponent<coneDetection> ().onSpot == true) {
 					print ("i see you");
 					score = +1;
-					hitInfo.transform.position = respawn.position;
+					hitInfo.transform.position = respawn;
 				}
 			}
 		}
