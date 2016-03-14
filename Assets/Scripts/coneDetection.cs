@@ -24,7 +24,7 @@ public class coneDetection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		volumeSlider.value = energy;
+//		volumeSlider.value = energy;
 
 		if (energy <= 0) {
 			Invoke ("lightWarm", 2);
