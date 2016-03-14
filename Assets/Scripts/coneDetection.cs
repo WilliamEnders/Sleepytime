@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 
 public class coneDetection : MonoBehaviour {
 
@@ -8,23 +6,18 @@ public class coneDetection : MonoBehaviour {
 	public float energy = 100;
 	public bool full;
 
-	public GameObject sliderX;
 
-	Slider volumeSlider;
 
 	// Use this for initialization
 	void Start () {
 
 		full = true;
-		volumeSlider = sliderX.GetComponent<Slider>();
 
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-//		volumeSlider.value = energy;
 
 		if (energy <= 0) {
 			Invoke ("lightWarm", 2);
