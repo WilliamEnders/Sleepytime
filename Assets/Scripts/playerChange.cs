@@ -4,61 +4,55 @@ using UnityEngine.UI;
 
 public class playerChange : MonoBehaviour {
 
-	public GameObject player1;
+	public GameObject player;
 	public GameObject model;
-	public float seconds;
-	public float cooldown;
-	public Text text;
-	public Text text2;
-	public bool canTransform = true;
+
+	public bool canTransform;
+	public bool quickBack;
+
+	public Mesh mesh;
+	public Mesh noMesh;
 
 
 	void Start () {
+
+		canTransform = true;
+		quickBack = false;
 	}
 
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.R) && canTransform == true) {
-			player1.SetActive (false);
-			model.SetActive (true);
-			InvokeRepeating ("Countdown", 1.0f, 1);
-			Invoke ("transformPlayer", 10);
+			player.SetActive (false);
+			model.GetComponent<MeshFilter> ().mesh = mesh;
 			canTransform = false; 
-			coolDown ();
+			quickBack = false;
+			Invoke ("goBack", 0.5f);
+			Invoke ("transformPlayer", 10);
+			Invoke ("afterWhile", 9);
 		}
-		if (canTransform == false) {
-			InvokeRepeating ("coolDown", 5f, 1f);
-		
+
+		if (Input.GetKeyDown (KeyCode.R) && canTransform == false && quickBack == true){
+			player.SetActive (true);
+			model.GetComponent<MeshFilter> ().mesh = noMesh;
 		}
+
 	}
 
-	void Countdown(){
-		//print (seconds);
-		seconds --;
-		text.text = "Time Left:" + Mathf.Round (seconds);
-	
-		if (seconds <= 0f) {
-			CancelInvoke ("Countdown");
-			player1.SetActive (true);
-			model.SetActive (false);
-			seconds = 5f;
-		}
+	void goBack(){
+
+		quickBack = true;
+		
 	}
 
 	void transformPlayer(){
 		canTransform = true;
 	}
 
-	void coolDown(){
-		cooldown--;
-		text2.text = "Change Time:" + Mathf.Round (cooldown);
-		print (cooldown);
-
-		if (cooldown <= 0f) {
-			CancelInvoke ("coolDown");
-			cooldown = 10f;
-		}
-	
+	void afterWhile() {
+		model.GetComponent<MeshFilter> ().mesh = noMesh;
+		player.SetActive (true);
 	}
+
 		
 }
 
