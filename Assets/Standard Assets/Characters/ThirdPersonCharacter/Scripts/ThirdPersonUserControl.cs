@@ -61,7 +61,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			float h = player.GetAxis("MoveHorizontalL"); 
 			float v = player.GetAxis("MoveVerticalL"); 
-            bool crouch = Input.GetKey(KeyCode.C);
+			bool crouch = player.GetButton("Crouch");
 
             // calculate move direction to pass to character
             if (m_Cam != null)
