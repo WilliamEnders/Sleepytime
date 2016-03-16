@@ -72,7 +72,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			else
 			{
 				HandleAirborneMovement(move);
-				locVel = transform.TransformDirection(new Vector3(move.x * 4,m_Rigidbody.velocity.y,move.z * 4));
+				locVel = transform.TransformDirection(new Vector3(move.x * 3,m_Rigidbody.velocity.y,move.z * 3));
 
 				m_Rigidbody.velocity = locVel;
 			}
