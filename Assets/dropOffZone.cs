@@ -5,6 +5,7 @@ public class dropOffZone : MonoBehaviour {
 
 	public int toyCount;
 	private pickUpFINAL player;
+	public ScreenFader fade;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,9 @@ public class dropOffZone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(toyCount == 3){
+			fade.EndScene (2);
+		}
 	}
 
 	void OnTriggerStay(Collider info){
