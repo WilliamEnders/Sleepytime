@@ -5,6 +5,7 @@ public class coneCast : MonoBehaviour {
 
 	public Transform playerSpot;
 	public Vector3 respawn;
+	public GameObject particle;
 	private int score;
 
 
@@ -41,7 +42,7 @@ public class coneCast : MonoBehaviour {
 			if (hitInfo.collider.CompareTag ("Player")) {
 				//Debug.Log ("HIT:" + hitInfo.collider.name);
 				if (GameObject.Find ("cone").GetComponent<coneDetection> ().onSpot == true) {
-					print ("i see you");
+					Instantiate (particle, transform.position, transform.rotation);
 					score = +1;
 					transform.parent.transform.position = respawn;
 				}
