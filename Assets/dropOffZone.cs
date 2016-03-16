@@ -6,9 +6,11 @@ public class dropOffZone : MonoBehaviour {
 	public int toyCount;
 	private pickUpFINAL player;
 	public ScreenFader fade;
+	private bool once;
 
 	// Use this for initialization
 	void Start () {
+		once = true;
 		toyCount = 0;
 		player = GameObject.Find ("ThirdPersonController").GetComponent<pickUpFINAL> ();
 	}
@@ -24,8 +26,14 @@ public class dropOffZone : MonoBehaviour {
 		if(!player.canPickup){
 			if(info.CompareTag("Toy")){
 			Destroy (info.gameObject);
+				if(once){
 			toyCount++;
+					once = false;
+				}
 		}
 	}
+	}
+	void OnTriggerExit(){
+		once = true;
 	}
 }
